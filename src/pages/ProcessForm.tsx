@@ -37,10 +37,28 @@ export default function ProcessForm() {
     // Validações mínimas por etapa
     const step = process.currentStepId;
     if (step === "primary") {
-      if (!local.nomeSolicitante || local.itemNacional === undefined || local.temProposta === undefined) {
+      if (!local.nomeSolicitante || local.itemNacional === undefined || local.temProposta === undefined || !local.tipoCadastro || !local.objetivo || !local.descricao || !local.urgencia) {
         toast({ title: "Preencha os campos obrigatórios (*)", description: "Verifique o formulário." });
         return;
       }
+    }
+    if (step === "services" && local.tipoCadastro === "Peças") {
+      if (!local.ncmCode || String(local.ncmCode).length !== 8) {
+        toast({ title: "Informe NCM com 8 dígitos", description: "Campo obrigatório para Peças." });
+        return;
+      }
+    }
+    if (step === "fiscal" && local.requerParametrizacao === undefined) {
+      toast({ title: "Selecione se requer parametrização", description: "Campo obrigatório." });
+      return;
+    }
+    if (step === "finance" && local.validadoMarcacaoCusto === undefined) {
+      toast({ title: "Informe a validação de marcação de custo", description: "Campo obrigatório." });
+      return;
+    }
+    if (step === "costs" && local.custoMarcado === true && !local.marcadoEm) {
+      toast({ title: "Informe a data/hora de marcação", description: "Obrigatório quando 'Custo marcado' = Sim." });
+      return;
     }
     if (step === "taxSystems" && local.requerParametrizacao === true && !local.parametrizacaoRealizada) {
       toast({ title: "Informe a parametrização realizada", description: "Campo obrigatório." });
@@ -76,7 +94,7 @@ export default function ProcessForm() {
         <FieldRow label="Objetivo/Motivo comercial" required>
           <Textarea value={local.objetivo || ""} disabled={!editable} onChange={(e)=>setLocal({ ...local, objetivo: e.target.value })} />
         </FieldRow>
-        <FieldRow label="Descrição/Marca/Especificações">
+        <FieldRow label="Descrição/Marca/Especificações" required>
           <Textarea value={local.descricao || ""} disabled={!editable} onChange={(e)=>setLocal({ ...local, descricao: e.target.value })} />
         </FieldRow>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -94,18 +112,26 @@ export default function ProcessForm() {
           </FieldRow>
         </div>
         {local.temProposta === true && (
-          <FieldRow label="Anexar proposta (nome do arquivo)">
-            <Input placeholder="proposta.pdf" disabled={!editable} value={(local.propostaAnexo?.[0] || "")} onChange={(e)=>setLocal({ ...local, propostaAnexo: [e.target.value] })} />
-            <p className="text-xs text-muted-foreground">Upload real será habilitado após integração com backend.</p>
-          </FieldRow>
+          <div className="rounded-md border bg-accent p-3 text-sm">
+            Instrução: Envie a proposta comercial diretamente ao Requisitante.
+          </div>
         )}
-        <FieldRow label="Urgência">
-          <select className="h-10 rounded-md border bg-background px-3" disabled={!editable} value={local.urgencia || "Média"} onChange={(e)=>setLocal({ ...local, urgencia: e.target.value })}>
-            <option>Baixa</option>
-            <option>Média</option>
-            <option>Alta</option>
-          </select>
-        </FieldRow>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <FieldRow label="Urgência" required>
+            <select className="h-10 rounded-md border bg-background px-3" disabled={!editable} value={local.urgencia || "Média"} onChange={(e)=>setLocal({ ...local, urgencia: e.target.value })}>
+              <option>Baixa</option>
+              <option>Média</option>
+              <option>Alta</option>
+            </select>
+          </FieldRow>
+          <FieldRow label="Tipo de Cadastro" required>
+            <select className="h-10 rounded-md border bg-background px-3" disabled={!editable} value={local.tipoCadastro || ""} onChange={(e)=>setLocal({ ...local, tipoCadastro: e.target.value })}>
+              <option value="">Selecione...</option>
+              <option value="Peças">Peças</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </FieldRow>
+        </div>
       </div>
     );
   }
@@ -118,7 +144,28 @@ export default function ProcessForm() {
     );
   }
 
-  function TaxSystemsFields() {
+  function ServicesFields() {
+    const isPecas = local.tipoCadastro === "Peças";
+    return (
+      <div className="grid gap-4">
+        {isPecas ? (
+          <>
+            <FieldRow label="Temperatura de MDG (para peças)">
+              <Input value={local.temperaturaMDG || ""} disabled={!editable} onChange={(e)=>setLocal({ ...local, temperaturaMDG: e.target.value })} />
+            </FieldRow>
+            <FieldRow label="NCM Code (8 dígitos)">
+              <Input value={local.ncmCode || ""} disabled={!editable} onChange={(e)=>setLocal({ ...local, ncmCode: e.target.value.replace(/[^0-9]/g, '').slice(0,8) })} placeholder="00000000" />
+              <p className="text-xs text-muted-foreground">Somente números. Ex.: 12345678</p>
+            </FieldRow>
+          </>
+        ) : (
+          <GenericTextarea label="avaliacaoServicos" />
+        )}
+      </div>
+    );
+  }
+
+  function FiscalFields() {
     return (
       <div className="grid gap-4">
         <FieldRow label="Requer parametrização?" required>
@@ -127,11 +174,81 @@ export default function ProcessForm() {
             <span className="text-sm text-muted-foreground">{local.requerParametrizacao ? "Sim" : "Não"}</span>
           </div>
         </FieldRow>
-        {local.requerParametrizacao === true && (
-          <FieldRow label="Parametrização realizada" required>
-            <Textarea value={local.parametrizacaoRealizada || ""} disabled={!editable} onChange={(e)=>setLocal({ ...local, parametrizacaoRealizada: e.target.value })} />
+        <GenericTextarea label="verificacaoTributaria" />
+        <GenericTextarea label="regrasICMS" />
+      </div>
+    );
+  }
+
+  function RequesterFields() {
+    return (
+      <div className="grid gap-4">
+        <FieldRow label="Data e hora de Inclusão">
+          <Input type="datetime-local" value={local.dadosInclusaoData || ""} disabled={!editable} onChange={(e)=>setLocal({ ...local, dadosInclusaoData: e.target.value })} />
+        </FieldRow>
+        <GenericTextarea label="dadosSistemaExterno" />
+      </div>
+    );
+  }
+
+  function FinanceFields() {
+    return (
+      <div className="grid gap-4">
+        <FieldRow label="Validado para marcação de custo?" required>
+          <div className="flex items-center gap-3">
+            <Switch checked={local.validadoMarcacaoCusto === true} disabled={!editable} onCheckedChange={(v)=>setLocal({ ...local, validadoMarcacaoCusto: v })} />
+            <span className="text-sm text-muted-foreground">{local.validadoMarcacaoCusto ? "Sim" : "Não"}</span>
+          </div>
+        </FieldRow>
+        <FieldRow label="Data de envio para marcação">
+          <Input type="datetime-local" value={local.dataEnvioMarcacao || ""} disabled={!editable} onChange={(e)=>setLocal({ ...local, dataEnvioMarcacao: e.target.value })} />
+        </FieldRow>
+      </div>
+    );
+  }
+
+  function CostsFields() {
+    return (
+      <div className="grid gap-4">
+        <FieldRow label="Custo marcado" required>
+          <div className="flex items-center gap-3">
+            <Switch checked={local.custoMarcado === true} disabled={!editable} onCheckedChange={(v)=>setLocal({ ...local, custoMarcado: v })} />
+            <span className="text-sm text-muted-foreground">{local.custoMarcado ? "Sim" : "Não"}</span>
+          </div>
+        </FieldRow>
+        <FieldRow label="Marcado em">
+          <Input type="datetime-local" value={local.marcadoEm || ""} disabled={!editable} onChange={(e)=>setLocal({ ...local, marcadoEm: e.target.value })} />
+        </FieldRow>
+      </div>
+    );
+  }
+
+  function SupplyFields() {
+    const isPecas = local.tipoCadastro === "Peças";
+    return (
+      <div className="grid gap-4">
+        <FieldRow label="Data MDG Finalizado (A3)">
+          <Input type="date" value={local.dataMDGFinalizado || ""} disabled={!editable} onChange={(e)=>setLocal({ ...local, dataMDGFinalizado: e.target.value })} />
+        </FieldRow>
+        {isPecas && (
+          <FieldRow label="Reorder Point atualizado no ADDONE?">
+            <div className="flex items-center gap-3">
+              <Switch checked={local.reorderPointAtualizado === true} disabled={!editable} onCheckedChange={(v)=>setLocal({ ...local, reorderPointAtualizado: v })} />
+              <span className="text-sm text-muted-foreground">{local.reorderPointAtualizado ? "Sim" : "Não"}</span>
+            </div>
           </FieldRow>
         )}
+      </div>
+    );
+  }
+
+  function TaxSystemsFields() {
+    return (
+      <div className="grid gap-4">
+        <FieldRow label="Parametrização realizada" required>
+          <Textarea value={local.parametrizacaoRealizada || ""} disabled={!editable} onChange={(e)=>setLocal({ ...local, parametrizacaoRealizada: e.target.value })} />
+        </FieldRow>
+        <p className="text-xs text-muted-foreground">SLA: TBC</p>
       </div>
     );
   }
@@ -141,24 +258,19 @@ export default function ProcessForm() {
       case "primary":
         return <PrimaryFields />;
       case "services":
-        return <GenericTextarea label="avaliacaoServicos" />;
+        return <ServicesFields />;
       case "fiscal":
-        return (
-          <div className="grid gap-4">
-            <GenericTextarea label="verificacaoTributaria" />
-            <GenericTextarea label="regrasICMS" />
-          </div>
-        );
+        return <FiscalFields />;
       case "regulatory":
         return <GenericTextarea label="requisitosLegais" />;
       case "requester":
-        return <GenericTextarea label="dadosSistemaExterno" />;
+        return <RequesterFields />;
       case "finance":
-        return <GenericTextarea label="impactoFinanceiro" />;
+        return <FinanceFields />;
       case "costs":
-        return <GenericTextarea label="aprovacaoCustos" />;
+        return <CostsFields />;
       case "supply":
-        return <GenericTextarea label="disponibilidade" />;
+        return <SupplyFields />;
       case "taxSystems":
         return <TaxSystemsFields />;
       case "closure":

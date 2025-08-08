@@ -57,10 +57,28 @@ const defaultData: Record<string, any> = {
   descricao: "",
   itemNacional: undefined as boolean | undefined,
   temProposta: undefined as boolean | undefined,
-  propostaAnexo: [] as string[],
   urgencia: "Média",
+  tipoCadastro: "", // "Peças" | "Outros"
+  // Especialista de Serviços
+  temperaturaMDG: "",
+  ncmCode: "",
+  // Fiscal / Sistemas Fiscais
   requerParametrizacao: undefined as boolean | undefined,
   parametrizacaoRealizada: "",
+  verificacaoTributaria: "",
+  regrasICMS: "",
+  // Requisitante
+  dadosSistemaExterno: "",
+  dadosInclusaoData: "",
+  // Finanças
+  validadoMarcacaoCusto: undefined as boolean | undefined,
+  dataEnvioMarcacao: "",
+  // Custos
+  custoMarcado: undefined as boolean | undefined,
+  marcadoEm: "",
+  // Supply
+  dataMDGFinalizado: "",
+  reorderPointAtualizado: undefined as boolean | undefined,
 };
 
 export const STEPS: StepDef[] = [
@@ -82,7 +100,7 @@ export const STEPS: StepDef[] = [
     id: "fiscal",
     title: "Fiscal",
     responsible: "Fiscal",
-    slaHours: 24,
+    slaHours: 48,
     isActive: () => true,
   },
   {
@@ -103,7 +121,7 @@ export const STEPS: StepDef[] = [
     id: "finance",
     title: "Finanças",
     responsible: "Finanças",
-    slaHours: 24,
+    slaHours: 72,
     isActive: () => true,
   },
   {
@@ -125,7 +143,7 @@ export const STEPS: StepDef[] = [
     title: "Sistemas Fiscais",
     responsible: "Sistemas Fiscais",
     slaHours: "TBC",
-    isActive: () => true,
+    isActive: (d) => d.requerParametrizacao === true,
   },
   {
     id: "closure",
