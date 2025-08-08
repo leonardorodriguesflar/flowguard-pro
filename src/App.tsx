@@ -5,6 +5,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import ProcessForm from "./pages/ProcessForm";
+import Summary from "./pages/Summary";
+import MainLayout from "./layouts/MainLayout";
+import { ProcessProvider } from "./context/ProcessContext";
+import NewProcess from "./pages/NewProcess";
 
 const queryClient = new QueryClient();
 
@@ -13,13 +20,22 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <ProcessProvider>
+        <BrowserRouter>
+          <MainLayout>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/process/nova" element={<NewProcess />} />
+              <Route path="/process/:id" element={<ProcessForm />} />
+              <Route path="/summary/:id" element={<Summary />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </MainLayout>
+        </BrowserRouter>
+      </ProcessProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
