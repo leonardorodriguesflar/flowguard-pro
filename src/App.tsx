@@ -5,13 +5,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import ProcessForm from "./pages/ProcessForm";
+import AbbottLogin from "./pages/AbbottLogin";
+import AbbottDashboard from "./pages/AbbottDashboard";
+import AbbottProcessForm from "./pages/AbbottProcessForm";
 import Summary from "./pages/Summary";
-import MainLayout from "./layouts/MainLayout";
-import { ProcessProvider } from "./context/ProcessContext";
-import NewProcess from "./pages/NewProcess";
+import ScopeAutomations from "./pages/ScopeAutomations";
+import AbbottLayout from "./layouts/AbbottLayout";
+import { AbbottProcessProvider } from "./context/AbbottProcessContext";
+import AbbottNewProcess from "./pages/AbbottNewProcess";
 
 const queryClient = new QueryClient();
 
@@ -20,22 +21,23 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <ProcessProvider>
+      <AbbottProcessProvider>
         <BrowserRouter>
-          <MainLayout>
+          <AbbottLayout>
             <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/process/nova" element={<NewProcess />} />
-              <Route path="/process/:id" element={<ProcessForm />} />
+              <Route path="/" element={<AbbottLogin />} />
+              <Route path="/login" element={<AbbottLogin />} />
+              <Route path="/dashboard" element={<AbbottDashboard />} />
+              <Route path="/scope" element={<ScopeAutomations />} />
+              <Route path="/process/nova" element={<AbbottNewProcess />} />
+              <Route path="/process/:id" element={<AbbottProcessForm />} />
               <Route path="/summary/:id" element={<Summary />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </MainLayout>
+          </AbbottLayout>
         </BrowserRouter>
-      </ProcessProvider>
+      </AbbottProcessProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

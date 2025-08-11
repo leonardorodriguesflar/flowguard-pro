@@ -8,53 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base palette: Gray, Green, Black (corporate) */
-    --background: 0 0% 99%;
-    --foreground: 220 15% 12%;
+    /* Abbott Color Palette */
+    --background: 210 20% 98%; /* #F8FAFC */
+    --foreground: 220 39% 11%; /* #0F172A */
 
     --card: 0 0% 100%;
-    --card-foreground: 220 15% 12%;
+    --card-foreground: 220 39% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 12%;
+    --popover-foreground: 220 39% 11%;
 
-    /* Primary = corporate green */
-    --primary: 142 60% 45%;
+    /* Abbott Blue Primary */
+    --primary: 210 100% 30%; /* #004C97 */
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary neutrals */
-    --secondary: 210 10% 96%;
-    --secondary-foreground: 220 15% 12%;
+    /* Abbott Light Blue Secondary */
+    --secondary: 196 100% 44%; /* #00A3E0 */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 12% 94%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 210 40% 94%; /* #E2E8F0 */
+    --muted-foreground: 215 16% 47%; /* #334155 */
 
-    /* Subtle green-tinted accent */
-    --accent: 142 30% 96%;
-    --accent-foreground: 220 15% 12%;
+    /* Abbott Green Accent */
+    --accent: 143 65% 41%; /* #1BB55C */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 72% 51%;
+    /* Status Colors */
+    --destructive: 0 84% 60%; /* #DC2626 */
     --destructive-foreground: 0 0% 100%;
+    
+    --success: 142 76% 36%; /* #16A34A */
+    --warning: 38 92% 50%; /* #F59E0B */
 
-    --border: 210 16% 90%;
-    --input: 210 16% 90%;
-    --ring: 142 60% 45%;
+    --border: 210 40% 94%; /* #E2E8F0 */
+    --input: 210 40% 94%;
+    --ring: 210 100% 30%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     /* Sidebar */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 142 60% 45%;
+    --sidebar-background: 210 100% 30%; /* Abbott Blue */
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 143 65% 41%; /* Abbott Green */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 10% 96%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 142 60% 45%;
+    --sidebar-accent: 196 100% 44%; /* Abbott Light Blue */
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 210 100% 25%;
+    --sidebar-ring: 143 65% 41%;
 
-    /* Extras for motion and premium finish */
-    --gradient-primary: linear-gradient(135deg, hsl(142 60% 45%), hsl(142 70% 38%));
-    --shadow-elevated: 0 12px 30px -10px hsl(142 60% 30% / 0.25);
+    /* Abbott Extras */
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 30%), hsl(196 100% 44%));
+    --shadow-elevated: 0 12px 30px -10px hsl(210 100% 20% / 0.25);
     --transition-smooth: all 220ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
