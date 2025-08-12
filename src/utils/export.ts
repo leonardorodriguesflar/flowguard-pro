@@ -1,9 +1,9 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import type { Process } from "@/context/ProcessContext";
-import { STEPS } from "@/context/ProcessContext";
+import type { AbbottProcess } from "@/context/AbbottProcessContext";
+import { ABBOTT_STEPS } from "@/context/AbbottProcessContext";
 
-export function exportCSV(p: Process) {
+export function exportCSV(p: AbbottProcess) {
   const rows: string[] = [];
   rows.push(["ID", p.id].join(","));
   rows.push(["Criado em", new Date(p.createdAt).toLocaleString()].join(","));
@@ -16,7 +16,7 @@ export function exportCSV(p: Process) {
   rows.push("Histórico");
   rows.push("Data,Etapa,Responsável,Ação");
   for (const h of p.history.slice().reverse()) {
-    const step = (STEPS as any).find((s: any) => s.id === h.stepId)?.title || h.stepId;
+    const step = ABBOTT_STEPS.find(s => s.id === h.stepId)?.title || h.stepId;
     rows.push(`${new Date(h.when).toLocaleString()},${step},${h.responsible},${h.action}`);
   }
   const blob = new Blob([rows.join("\n")], { type: "text/csv;charset=utf-8;" });
@@ -27,7 +27,7 @@ export function exportCSV(p: Process) {
   URL.revokeObjectURL(a.href);
 }
 
-export function exportPDF(p: Process) {
+export function exportPDF(p: AbbottProcess) {
   const doc = new jsPDF();
   doc.setFontSize(14);
   doc.text(`Resumo do Processo ${p.id}`, 14, 18);
@@ -55,7 +55,7 @@ export function exportPDF(p: Process) {
       .reverse()
       .map((h) => [
         new Date(h.when).toLocaleString(),
-        ((STEPS as any).find((s: any) => s.id === h.stepId)?.title || h.stepId) as string,
+        ABBOTT_STEPS.find(s => s.id === h.stepId)?.title || h.stepId,
         h.responsible,
         h.action,
       ]),

@@ -1,9 +1,9 @@
-import { STEPS } from "@/context/ProcessContext";
-import type { HistoryEntry, Process } from "@/context/ProcessContext";
+import { ABBOTT_STEPS } from "@/context/AbbottProcessContext";
+import type { HistoryEntry, AbbottProcess } from "@/context/AbbottProcessContext";
 
-export function HistoryPanel({ process }: { process: Process }) {
+export function HistoryPanel({ process }: { process: AbbottProcess }) {
   const entries = process.history;
-  const getStepTitle = (id: string) => STEPS.find((s) => s.id === id)?.title || id;
+  const getStepTitle = (id: string) => ABBOTT_STEPS.find((s) => s.id === id)?.title || id;
 
   return (
     <aside className="w-full lg:w-80 border-l bg-card">
