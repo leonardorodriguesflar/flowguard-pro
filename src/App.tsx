@@ -8,6 +8,9 @@ import NotFound from "./pages/NotFound";
 import AbbottLogin from "./pages/AbbottLogin";
 import AbbottDashboard from "./pages/AbbottDashboard";
 import AbbottProcessForm from "./pages/AbbottProcessForm";
+import AbbottMyTasks from "./pages/AbbottMyTasks";
+import AbbottHistory from "./pages/AbbottHistory";
+import AbbottSettings from "./pages/AbbottSettings";
 import Summary from "./pages/Summary";
 import ScopeAutomations from "./pages/ScopeAutomations";
 import AbbottLayout from "./layouts/AbbottLayout";
@@ -28,6 +31,9 @@ const App = () => (
               <Route path="/" element={<AbbottLogin />} />
               <Route path="/login" element={<AbbottLogin />} />
               <Route path="/dashboard" element={<AbbottDashboard />} />
+              <Route path="/my-tasks" element={<AbbottMyTasks />} />
+              <Route path="/history" element={<AbbottHistory />} />
+              <Route path="/settings" element={<AbbottSettings />} />
               <Route path="/scope" element={<ScopeAutomations />} />
               <Route path="/process/nova" element={<AbbottNewProcess />} />
               <Route path="/process/:id" element={<AbbottProcessForm />} />
