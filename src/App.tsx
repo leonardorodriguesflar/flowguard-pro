@@ -10,6 +10,7 @@ import AbbottDashboard from "./pages/AbbottDashboard";
 import AbbottProcessForm from "./pages/AbbottProcessForm";
 import AbbottMyTasks from "./pages/AbbottMyTasks";
 import AbbottHistory from "./pages/AbbottHistory";
+import AbbottBenefits from "./pages/AbbottBenefits";
 import AbbottSettings from "./pages/AbbottSettings";
 import Summary from "./pages/Summary";
 import ScopeAutomations from "./pages/ScopeAutomations";

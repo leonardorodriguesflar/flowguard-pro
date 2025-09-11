@@ -25,12 +25,13 @@ import {
 } from "lucide-react";
 
 const menuItems = [
-  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
-  { id: "new", label: "Nova Solicitação", icon: Plus, path: "/process/nova" },
-  { id: "tasks", label: "Minhas Etapas", icon: CheckSquare, path: "/my-tasks" },
-  { id: "history", label: "Histórico Completo", icon: History, path: "/history" },
-  { id: "scope", label: "Escopo & Automações", icon: Zap, path: "/scope" },
-  { id: "settings", label: "Configurações", icon: Settings, path: "/settings" },
+  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, path: "/abbott" },
+  { id: "new", label: "Nova Solicitação", icon: Plus, path: "/abbott/new-process" },
+  { id: "tasks", label: "Minhas Etapas", icon: CheckSquare, path: "/abbott/my-tasks" },
+  { id: "history", label: "Histórico Completo", icon: History, path: "/abbott/history" },
+  { id: "benefits", label: "Benefícios & ROI", icon: User, path: "/abbott/benefits" },
+  { id: "scope", label: "Proposta Comercial", icon: Zap, path: "/scope" },
+  { id: "settings", label: "Configurações", icon: Settings, path: "/abbott/settings" },
 ];
 
 export default function AbbottLayout({ children }: { children: React.ReactNode }) {
