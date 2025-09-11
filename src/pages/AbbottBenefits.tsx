@@ -22,10 +22,10 @@ const eficienciaData = [
 ];
 
 const beneficiosDistribuicao = [
-  { nome: "Redução Tempo", valor: 35, cor: "#004C97" },
-  { nome: "Eliminação Erros", valor: 25, cor: "#00A3E0" },
-  { nome: "Automação", valor: 20, cor: "#1BB55C" },
-  { nome: "Rastreabilidade", valor: 20, cor: "#16A34A" },
+  { nome: "Redução Tempo", valor: 35, cor: "hsl(210, 100%, 30%)" },
+  { nome: "Eliminação Erros", valor: 25, cor: "hsl(196, 100%, 44%)" },
+  { nome: "Automação", valor: 20, cor: "hsl(143, 65%, 41%)" },
+  { nome: "Rastreabilidade", valor: 20, cor: "hsl(142, 76%, 36%)" },
 ];
 
 const chartConfig = {
@@ -39,7 +39,7 @@ export default function AbbottBenefits() {
   return (
     <div className="space-y-8 p-6">
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-abbott-blue">Benefícios & ROI</h1>
+        <h1 className="text-4xl font-bold text-primary">Benefícios & ROI</h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
           Análise completa dos benefícios esperados com a implementação do Abbott Process Manager
         </p>
@@ -47,7 +47,7 @@ export default function AbbottBenefits() {
 
       {/* Métricas Principais */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-gradient-to-br from-abbott-blue to-abbott-secondary text-white">
+        <Card className="bg-gradient-to-br from-primary to-secondary text-primary-foreground">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <DollarSign className="h-4 w-4" />
@@ -60,7 +60,7 @@ export default function AbbottBenefits() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-abbott-accent to-green-600 text-white">
+        <Card className="bg-gradient-to-br from-accent to-success text-accent-foreground">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Clock className="h-4 w-4" />
@@ -73,7 +73,7 @@ export default function AbbottBenefits() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-blue-500 to-abbott-secondary text-white">
+        <Card className="bg-gradient-to-br from-secondary to-primary text-secondary-foreground">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Target className="h-4 w-4" />
@@ -86,7 +86,7 @@ export default function AbbottBenefits() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-green-500 to-abbott-accent text-white">
+        <Card className="bg-gradient-to-br from-success to-accent text-accent-foreground">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <CheckCircle className="h-4 w-4" />
@@ -104,7 +104,7 @@ export default function AbbottBenefits() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-abbott-blue" />
+            <TrendingUp className="h-5 w-5 text-primary" />
             Retorno sobre Investimento (ROI)
           </CardTitle>
           <CardDescription>
@@ -138,11 +138,11 @@ export default function AbbottBenefits() {
           </ChartContainer>
           <div className="mt-4 flex justify-center gap-6">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-abbott-accent rounded-full"></div>
+              <div className="w-3 h-3 bg-accent rounded-full"></div>
               <span className="text-sm">Economia Acumulada</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-abbott-blue rounded-full border-2 border-dashed"></div>
+              <div className="w-3 h-3 bg-primary rounded-full border-2 border-dashed"></div>
               <span className="text-sm">Investimento Inicial</span>
             </div>
           </div>
@@ -154,7 +154,7 @@ export default function AbbottBenefits() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Zap className="h-5 w-5 text-abbott-blue" />
+              <Zap className="h-5 w-5 text-primary" />
               Redução de Tempo por Etapa
             </CardTitle>
             <CardDescription>
@@ -180,7 +180,7 @@ export default function AbbottBenefits() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Target className="h-5 w-5 text-abbott-blue" />
+              <Target className="h-5 w-5 text-primary" />
               Distribuição dos Benefícios
             </CardTitle>
             <CardDescription>
@@ -215,7 +215,7 @@ export default function AbbottBenefits() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Shield className="h-5 w-5 text-abbott-blue" />
+            <Shield className="h-5 w-5 text-primary" />
             Benefícios Qualitativos
           </CardTitle>
           <CardDescription>
@@ -225,54 +225,54 @@ export default function AbbottBenefits() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="space-y-3">
-              <h4 className="font-semibold text-abbott-blue">Governança & Compliance</h4>
+              <h4 className="font-semibold text-primary">Governança & Compliance</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-abbott-accent mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                   Auditoria completa de todas as ações
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-abbott-accent mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                   Rastreabilidade fim-a-fim
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-abbott-accent mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                   Histórico imutável
                 </li>
               </ul>
             </div>
 
             <div className="space-y-3">
-              <h4 className="font-semibold text-abbott-blue">Qualidade & Eficiência</h4>
+              <h4 className="font-semibold text-primary">Qualidade & Eficiência</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-abbott-accent mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                   Eliminação de retrabalho
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-abbott-accent mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                   Validações automáticas
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-abbott-accent mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                   Fluxo padronizado
                 </li>
               </ul>
             </div>
 
             <div className="space-y-3">
-              <h4 className="font-semibold text-abbott-blue">Experiência do Usuário</h4>
+              <h4 className="font-semibold text-primary">Experiência do Usuário</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-abbott-accent mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                   Interface intuitiva e moderna
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-abbott-accent mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                   Acesso móvel completo
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-abbott-accent mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                   Notificações inteligentes
                 </li>
               </ul>
@@ -285,7 +285,7 @@ export default function AbbottBenefits() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Users className="h-5 w-5 text-abbott-blue" />
+            <Users className="h-5 w-5 text-primary" />
             Progresso da Implementação
           </CardTitle>
           <CardDescription>
