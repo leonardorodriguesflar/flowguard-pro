@@ -40,6 +40,7 @@ const App = () => (
               <Route path="/process/:id" element={<AbbottProcessForm />} />
               <Route path="/summary/:id" element={<Summary />} />
               <Route path="/benefits" element={<AbbottBenefits />} />
+              <Route path="/abbott/benefits" element={<AbbottBenefits />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
