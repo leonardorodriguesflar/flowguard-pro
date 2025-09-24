@@ -4,40 +4,85 @@ import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Clock, Users, CheckCircle, DollarSign, Target, Zap, Shield } from "lucide-react";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
-
-const roiData = [
-  { mes: "Mês 1", economia: 5000, investimento: 53000 },
-  { mes: "Mês 2", economia: 12000, investimento: 53000 },
-  { mes: "Mês 3", economia: 18000, investimento: 53000 },
-  { mes: "Mês 6", economia: 35000, investimento: 53000 },
-  { mes: "Mês 12", economia: 65000, investimento: 53000 },
-];
-
-const eficienciaData = [
-  { area: "Solicitação", antes: 120, depois: 15 },
-  { area: "Aprovação", antes: 240, depois: 30 },
-  { area: "Fiscal", antes: 180, depois: 45 },
-  { area: "Regulatório", antes: 200, depois: 60 },
-  { area: "Supply", antes: 150, depois: 20 },
-];
-
-const beneficiosDistribuicao = [
-  { nome: "Redução Tempo", valor: 35, cor: "hsl(210, 100%, 30%)" },
-  { nome: "Eliminação Erros", valor: 25, cor: "hsl(196, 100%, 44%)" },
-  { nome: "Automação", valor: 20, cor: "hsl(143, 65%, 41%)" },
-  { nome: "Rastreabilidade", valor: 20, cor: "hsl(142, 76%, 36%)" },
-];
-
+const roiData = [{
+  mes: "Mês 1",
+  economia: 5000,
+  investimento: 53000
+}, {
+  mes: "Mês 2",
+  economia: 12000,
+  investimento: 53000
+}, {
+  mes: "Mês 3",
+  economia: 18000,
+  investimento: 53000
+}, {
+  mes: "Mês 6",
+  economia: 35000,
+  investimento: 53000
+}, {
+  mes: "Mês 12",
+  economia: 65000,
+  investimento: 53000
+}];
+const eficienciaData = [{
+  area: "Solicitação",
+  antes: 120,
+  depois: 15
+}, {
+  area: "Aprovação",
+  antes: 240,
+  depois: 30
+}, {
+  area: "Fiscal",
+  antes: 180,
+  depois: 45
+}, {
+  area: "Regulatório",
+  antes: 200,
+  depois: 60
+}, {
+  area: "Supply",
+  antes: 150,
+  depois: 20
+}];
+const beneficiosDistribuicao = [{
+  nome: "Redução Tempo",
+  valor: 35,
+  cor: "hsl(210, 100%, 30%)"
+}, {
+  nome: "Eliminação Erros",
+  valor: 25,
+  cor: "hsl(196, 100%, 44%)"
+}, {
+  nome: "Automação",
+  valor: 20,
+  cor: "hsl(143, 65%, 41%)"
+}, {
+  nome: "Rastreabilidade",
+  valor: 20,
+  cor: "hsl(142, 76%, 36%)"
+}];
 const chartConfig = {
-  economia: { label: "Economia", color: "#1BB55C" },
-  investimento: { label: "Investimento", color: "#004C97" },
-  antes: { label: "Processo Atual", color: "#DC2626" },
-  depois: { label: "Processo Digital", color: "#1BB55C" },
+  economia: {
+    label: "Economia",
+    color: "#1BB55C"
+  },
+  investimento: {
+    label: "Investimento",
+    color: "#004C97"
+  },
+  antes: {
+    label: "Processo Atual",
+    color: "#DC2626"
+  },
+  depois: {
+    label: "Processo Digital",
+    color: "#1BB55C"
+  }
 };
-
 export default function AbbottBenefits() {
-  return (
-    <div className="space-y-8 p-6">
+  return <div className="space-y-8 p-6">
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-primary">Benefícios & ROI</h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -47,18 +92,7 @@ export default function AbbottBenefits() {
 
       {/* Métricas Principais */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-gradient-to-br from-primary to-secondary text-primary-foreground">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <DollarSign className="h-4 w-4" />
-              Economia Anual
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">R$ 65.000</div>
-            <p className="text-xs opacity-90">23% redução nos custos</p>
-          </CardContent>
-        </Card>
+        
 
         <Card className="bg-gradient-to-br from-accent to-success text-accent-foreground">
           <CardHeader className="pb-2">
@@ -68,7 +102,7 @@ export default function AbbottBenefits() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">75%</div>
+            <div className="text-2xl font-bold">91%</div>
             <p className="text-xs opacity-90">Redução no tempo total</p>
           </CardContent>
         </Card>
@@ -82,7 +116,7 @@ export default function AbbottBenefits() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">123%</div>
-            <p className="text-xs opacity-90">Retorno em 12 meses</p>
+            <p className="text-xs opacity-90">Retorno em 6 meses</p>
           </CardContent>
         </Card>
 
@@ -119,20 +153,12 @@ export default function AbbottBenefits() {
                 <XAxis dataKey="mes" />
                 <YAxis />
                 <ChartTooltip content={<ChartTooltipContent />} />
-                <Line 
-                  type="monotone" 
-                  dataKey="economia" 
-                  stroke="#1BB55C" 
-                  strokeWidth={3}
-                  dot={{ fill: "#1BB55C", strokeWidth: 2, r: 6 }}
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="investimento" 
-                  stroke="#004C97" 
-                  strokeDasharray="5 5"
-                  strokeWidth={2}
-                />
+                <Line type="monotone" dataKey="economia" stroke="#1BB55C" strokeWidth={3} dot={{
+                fill: "#1BB55C",
+                strokeWidth: 2,
+                r: 6
+              }} />
+                <Line type="monotone" dataKey="investimento" stroke="#004C97" strokeDasharray="5 5" strokeWidth={2} />
               </LineChart>
             </ResponsiveContainer>
           </ChartContainer>
@@ -191,17 +217,11 @@ export default function AbbottBenefits() {
             <ChartContainer config={chartConfig} className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Pie
-                    data={beneficiosDistribuicao}
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    dataKey="valor"
-                    label={({ nome, valor }) => `${nome}: ${valor}%`}
-                  >
-                    {beneficiosDistribuicao.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.cor} />
-                    ))}
+                  <Pie data={beneficiosDistribuicao} cx="50%" cy="50%" outerRadius={80} dataKey="valor" label={({
+                  nome,
+                  valor
+                }) => `${nome}: ${valor}%`}>
+                    {beneficiosDistribuicao.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.cor} />)}
                   </Pie>
                   <ChartTooltip content={<ChartTooltipContent />} />
                 </PieChart>
@@ -293,13 +313,23 @@ export default function AbbottBenefits() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          {[
-            { fase: "Planejamento & Design", progresso: 100, beneficio: "Alinhamento de requisitos" },
-            { fase: "Desenvolvimento", progresso: 85, beneficio: "Primeiras automações ativas" },
-            { fase: "Testes & Ajustes", progresso: 60, beneficio: "Validação completa do fluxo" },
-            { fase: "Implantação", progresso: 30, beneficio: "Treinamento e go-live" },
-          ].map((item, index) => (
-            <div key={index} className="space-y-2">
+          {[{
+          fase: "Planejamento & Design",
+          progresso: 100,
+          beneficio: "Alinhamento de requisitos"
+        }, {
+          fase: "Desenvolvimento",
+          progresso: 85,
+          beneficio: "Primeiras automações ativas"
+        }, {
+          fase: "Testes & Ajustes",
+          progresso: 60,
+          beneficio: "Validação completa do fluxo"
+        }, {
+          fase: "Implantação",
+          progresso: 30,
+          beneficio: "Treinamento e go-live"
+        }].map((item, index) => <div key={index} className="space-y-2">
               <div className="flex justify-between items-center">
                 <span className="font-medium">{item.fase}</span>
                 <Badge variant={item.progresso === 100 ? "default" : "secondary"}>
@@ -308,10 +338,8 @@ export default function AbbottBenefits() {
               </div>
               <Progress value={item.progresso} className="h-2" />
               <p className="text-sm text-muted-foreground">{item.beneficio}</p>
-            </div>
-          ))}
+            </div>)}
         </CardContent>
       </Card>
-    </div>
-  );
+    </div>;
 }
