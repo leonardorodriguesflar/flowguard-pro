@@ -23,6 +23,7 @@ import {
   LogOut,
   User
 } from "lucide-react";
+import litLogo from "@/assets/lit-logo.jpg";
 
 const menuItems = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, path: "/abbott" },
@@ -55,9 +56,11 @@ export default function AbbottLayout({ children }: { children: React.ReactNode }
         <Sidebar className="border-r">
           <SidebarHeader className="border-b p-6">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <Building2 className="h-6 w-6" />
-              </div>
+              <img 
+                src={litLogo} 
+                alt="LT Digital Transformation" 
+                className="h-8 w-auto object-contain"
+              />
               <div>
                 <h2 className="font-bold text-sidebar-foreground">Abbott</h2>
                 <p className="text-xs text-sidebar-foreground/70">Process Manager</p>

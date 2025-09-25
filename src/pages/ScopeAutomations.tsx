@@ -3,9 +3,18 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Zap, Database, MessageSquare, FileText, Bell, Clock, ArrowRight, CheckCircle, AlertTriangle, Settings, Mail, Users, Target, DollarSign, Cog, Smartphone } from "lucide-react";
+import litLogo from "@/assets/lit-logo.jpg";
+
 export default function ScopeAutomations() {
   return <div className="space-y-8 p-6">
-      <div className="text-center space-y-4">
+      <div className="text-center space-y-6">
+        <div className="flex justify-center">
+          <img 
+            src={litLogo} 
+            alt="LT Digital Transformation Logo" 
+            className="h-20 w-auto object-contain"
+          />
+        </div>
         <h1 className="text-4xl font-bold text-abbott-blue">Proposta Comercial</h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
           Solução completa para transformação digital do processo de cadastro
