@@ -1,190 +1,120 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Clock, Users, CheckCircle, DollarSign, Target, Zap, Shield } from "lucide-react";
+import { Clock, Users, CheckCircle, Target, Zap, Shield, FileCheck, TrendingUp, Workflow } from "lucide-react";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
-const roiData = [{
-  mes: "Mês 1",
-  economia: 5000,
-  investimento: 53000
-}, {
-  mes: "Mês 2",
-  economia: 12000,
-  investimento: 53000
-}, {
-  mes: "Mês 3",
-  economia: 18000,
-  investimento: 53000
-}, {
-  mes: "Mês 6",
-  economia: 35000,
-  investimento: 53000
-}, {
-  mes: "Mês 12",
-  economia: 65000,
-  investimento: 53000
-}];
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+
 const eficienciaData = [{
   area: "Solicitação",
-  antes: 120,
-  depois: 15
+  impacto: "Alto",
+  valor: 90
 }, {
   area: "Aprovação",
-  antes: 240,
-  depois: 30
+  impacto: "Muito Alto",
+  valor: 95
 }, {
   area: "Fiscal",
-  antes: 180,
-  depois: 45
+  impacto: "Alto",
+  valor: 85
 }, {
   area: "Regulatório",
-  antes: 200,
-  depois: 60
+  impacto: "Alto",
+  valor: 80
 }, {
   area: "Supply",
-  antes: 150,
-  depois: 20
+  impacto: "Muito Alto",
+  valor: 92
 }];
 const beneficiosDistribuicao = [{
   nome: "Redução Tempo",
   valor: 35,
-  cor: "hsl(210, 100%, 30%)"
+  cor: "hsl(var(--primary))"
 }, {
   nome: "Eliminação Erros",
   valor: 25,
-  cor: "hsl(196, 100%, 44%)"
+  cor: "hsl(var(--accent))"
 }, {
   nome: "Automação",
   valor: 20,
-  cor: "hsl(143, 65%, 41%)"
+  cor: "hsl(var(--success))"
 }, {
   nome: "Rastreabilidade",
   valor: 20,
-  cor: "hsl(142, 76%, 36%)"
+  cor: "hsl(var(--secondary))"
 }];
+
 const chartConfig = {
-  economia: {
-    label: "Economia",
-    color: "#1BB55C"
+  impacto: {
+    label: "Nível de Impacto",
+    color: "hsl(var(--primary))"
   },
-  investimento: {
-    label: "Investimento",
-    color: "#004C97"
-  },
-  antes: {
-    label: "Processo Atual",
-    color: "#DC2626"
-  },
-  depois: {
-    label: "Processo Digital",
-    color: "#1BB55C"
+  valor: {
+    label: "Impacto",
+    color: "hsl(var(--primary))"
   }
 };
 export default function AbbottBenefits() {
   return <div className="space-y-8 p-6">
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-primary">Benefícios & ROI</h1>
+        <h1 className="text-4xl font-bold text-primary">Benefícios da Solução</h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Análise completa dos benefícios esperados com a implementação do Abbott Process Manager
+          Principais benefícios esperados com a implementação do Abbott Process Manager
         </p>
       </div>
 
       {/* Métricas Principais */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        
-
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="bg-gradient-to-br from-accent to-success text-accent-foreground">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Clock className="h-4 w-4" />
-              Tempo Poupado
+              Agilidade
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">91%</div>
-            <p className="text-xs opacity-90">Redução no tempo total</p>
+            <div className="text-2xl font-bold">Significativa</div>
+            <p className="text-xs opacity-90">Redução no tempo de processo</p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-secondary to-primary text-secondary-foreground">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Target className="h-4 w-4" />
-              ROI
+              <CheckCircle className="h-4 w-4" />
+              Qualidade
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">123%</div>
-            <p className="text-xs opacity-90">Retorno em 6 meses</p>
+            <div className="text-2xl font-bold">Excelente</div>
+            <p className="text-xs opacity-90">Melhoria na precisão</p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-success to-accent text-accent-foreground">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <CheckCircle className="h-4 w-4" />
-              Precisão
+              <Shield className="h-4 w-4" />
+              Governança
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">99.5%</div>
-            <p className="text-xs opacity-90">Redução de erros</p>
+            <div className="text-2xl font-bold">Completa</div>
+            <p className="text-xs opacity-90">Controle e rastreabilidade</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Gráfico ROI */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
-            Retorno sobre Investimento (ROI)
-          </CardTitle>
-          <CardDescription>
-            Projeção de economia ao longo do primeiro ano
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ChartContainer config={chartConfig} className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={roiData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="mes" />
-                <YAxis />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Line type="monotone" dataKey="economia" stroke="#1BB55C" strokeWidth={3} dot={{
-                fill: "#1BB55C",
-                strokeWidth: 2,
-                r: 6
-              }} />
-                <Line type="monotone" dataKey="investimento" stroke="#004C97" strokeDasharray="5 5" strokeWidth={2} />
-              </LineChart>
-            </ResponsiveContainer>
-          </ChartContainer>
-          <div className="mt-4 flex justify-center gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-accent rounded-full"></div>
-              <span className="text-sm">Economia Acumulada</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-primary rounded-full border-2 border-dashed"></div>
-              <span className="text-sm">Investimento Inicial</span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Gráfico de Eficiência */}
+      {/* Gráfico de Impacto */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Zap className="h-5 w-5 text-primary" />
-              Redução de Tempo por Etapa
+              Nível de Impacto por Área
             </CardTitle>
             <CardDescription>
-              Comparação entre processo atual e digitalizado (em minutos)
+              Impacto esperado da digitalização em cada etapa do processo
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -195,8 +125,7 @@ export default function AbbottBenefits() {
                   <XAxis dataKey="area" />
                   <YAxis />
                   <ChartTooltip content={<ChartTooltipContent />} />
-                  <Bar dataKey="antes" fill="#DC2626" name="Processo Atual" />
-                  <Bar dataKey="depois" fill="#1BB55C" name="Processo Digital" />
+                  <Bar dataKey="valor" fill="hsl(var(--primary))" name="Nível de Impacto" />
                 </BarChart>
               </ResponsiveContainer>
             </ChartContainer>
