@@ -30,7 +30,7 @@ git push -u origin main
 1. No repositório GitHub, vá em **Settings**
 2. No menu lateral, clique em **Pages**
 3. Em "Source", selecione **Deploy from a branch**
-4. Escolha a branch `main` e pasta `root` (ou `/` para a raiz)
+4. Escolha a branch `gh-pages` e pasta `root` (ou `/` para a raiz)
 5. Salve as configurações
 
 ### 4. Fazer deploy manual
