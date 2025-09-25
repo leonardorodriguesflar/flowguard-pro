@@ -31,16 +31,22 @@ const App = () => (
             <Routes>
               <Route path="/" element={<AbbottLogin />} />
               <Route path="/login" element={<AbbottLogin />} />
-              <Route path="/dashboard" element={<AbbottDashboard />} />
-              <Route path="/my-tasks" element={<AbbottMyTasks />} />
-              <Route path="/history" element={<AbbottHistory />} />
-              <Route path="/settings" element={<AbbottSettings />} />
+              <Route path="/abbott" element={<AbbottDashboard />} />
+              <Route path="/abbott/new-process" element={<AbbottNewProcess />} />
+              <Route path="/abbott/my-tasks" element={<AbbottMyTasks />} />
+              <Route path="/abbott/history" element={<AbbottHistory />} />
+              <Route path="/abbott/settings" element={<AbbottSettings />} />
+              <Route path="/abbott/benefits" element={<AbbottBenefits />} />
               <Route path="/scope" element={<ScopeAutomations />} />
               <Route path="/process/nova" element={<AbbottNewProcess />} />
               <Route path="/process/:id" element={<AbbottProcessForm />} />
               <Route path="/summary/:id" element={<Summary />} />
+              {/* Rotas de compatibilidade */}
+              <Route path="/dashboard" element={<AbbottDashboard />} />
+              <Route path="/my-tasks" element={<AbbottMyTasks />} />
+              <Route path="/history" element={<AbbottHistory />} />
+              <Route path="/settings" element={<AbbottSettings />} />
               <Route path="/benefits" element={<AbbottBenefits />} />
-              <Route path="/abbott/benefits" element={<AbbottBenefits />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
