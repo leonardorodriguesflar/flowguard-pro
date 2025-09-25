@@ -2,28 +2,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { 
-  Zap, 
-  Database, 
-  MessageSquare, 
-  FileText, 
-  Bell, 
-  Clock, 
-  ArrowRight, 
-  CheckCircle, 
-  AlertTriangle,
-  Settings,
-  Mail,
-  Users,
-  Target,
-  DollarSign,
-  Cog,
-  Smartphone
-} from "lucide-react";
-
+import { Zap, Database, MessageSquare, FileText, Bell, Clock, ArrowRight, CheckCircle, AlertTriangle, Settings, Mail, Users, Target, DollarSign, Cog, Smartphone } from "lucide-react";
 export default function ScopeAutomations() {
-  return (
-    <div className="space-y-8 p-6">
+  return <div className="space-y-8 p-6">
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-abbott-blue">Proposta Comercial</h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -32,21 +13,7 @@ export default function ScopeAutomations() {
       </div>
 
       {/* Proposta Comercial */}
-      <Card className="bg-gradient-to-br from-abbott-blue to-abbott-secondary text-white">
-        <CardHeader>
-          <CardTitle className="text-2xl text-center">Abbott Process Manager</CardTitle>
-          <CardDescription className="text-center text-blue-100">
-            Central de Cadastro & Rastreabilidade - Proposta LIT Tecnologia
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="text-center space-y-4">
-          <div className="bg-white/10 rounded-lg p-6">
-            <div className="text-4xl font-bold mb-2">R$ 53.000</div>
-            <div className="text-lg opacity-90">Investimento Total</div>
-            <div className="text-sm opacity-80 mt-2">Escopo fechado | Entrega em 4 fases</div>
-          </div>
-        </CardContent>
-      </Card>
+      
 
       {/* Resumo Executivo */}
       <Card>
@@ -58,7 +25,7 @@ export default function ScopeAutomations() {
         </CardHeader>
         <CardContent className="prose max-w-none">
           <p className="text-lg mb-4">
-            A <strong>LIT Tecnologia</strong> apresenta solução completa para modernizar o processo de cadastro 
+            A <strong>LIT Technologia</strong> apresenta solução completa para modernizar o processo de cadastro 
             da Abbott, transformando planilhas Excel em uma plataforma digital robusta com Microsoft Power Apps.
           </p>
           
@@ -194,19 +161,32 @@ export default function ScopeAutomations() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { name: "Power Apps", description: "Interface principal", icon: <Smartphone />, status: "Incluído" },
-              { name: "Power Automate", description: "Automação de fluxos", icon: <Zap />, status: "Incluído" },
-              { name: "Dataverse", description: "Base de dados", icon: <Database />, status: "Incluído" },
-              { name: "Teams Integration", description: "Notificações", icon: <MessageSquare />, status: "Incluído" },
-            ].map((tech, index) => (
-              <div key={index} className="text-center p-4 border rounded-lg hover:bg-blue-50 transition-colors">
+            {[{
+            name: "Power Apps",
+            description: "Interface principal",
+            icon: <Smartphone />,
+            status: "Incluído"
+          }, {
+            name: "Power Automate",
+            description: "Automação de fluxos",
+            icon: <Zap />,
+            status: "Incluído"
+          }, {
+            name: "Dataverse",
+            description: "Base de dados",
+            icon: <Database />,
+            status: "Incluído"
+          }, {
+            name: "Teams Integration",
+            description: "Notificações",
+            icon: <MessageSquare />,
+            status: "Incluído"
+          }].map((tech, index) => <div key={index} className="text-center p-4 border rounded-lg hover:bg-blue-50 transition-colors">
                 <div className="text-abbott-blue mb-2 flex justify-center">{tech.icon}</div>
                 <h4 className="font-semibold text-sm">{tech.name}</h4>
                 <p className="text-xs text-muted-foreground mb-2">{tech.description}</p>
                 <Badge variant="default" className="text-xs">{tech.status}</Badge>
-              </div>
-            ))}
+              </div>)}
           </div>
         </CardContent>
       </Card>
@@ -244,7 +224,7 @@ export default function ScopeAutomations() {
                 <ul className="space-y-2 text-sm">
                   <li>✅ Escopo fechado e bem definido</li>
                   <li>✅ Sem surpresas no orçamento</li>
-                  <li>✅ Pagamento por milestone</li>
+                  <li>✅ Pagamento 50% na assinatura e 50% na Entrega</li>
                   <li>✅ Garantia de entrega</li>
                 </ul>
               </div>
@@ -353,136 +333,65 @@ export default function ScopeAutomations() {
               <h4 className="font-semibold text-abbott-blue">Contatos</h4>
               <div className="space-y-3 text-sm">
                 <div className="p-3 bg-white rounded-lg border">
-                  <div className="font-medium">LIT Tecnologia</div>
+                  <div className="font-medium">LIT Technologia</div>
                   <div className="text-muted-foreground">Equipe de Vendas</div>
-                  <div className="text-abbott-blue">vendas@littec.com</div>
+                  <div className="text-abbott-blue">adm@littechnologia.com</div>
                 </div>
-                <div className="p-3 bg-white rounded-lg border">
-                  <div className="font-medium">Suporte Técnico</div>
-                  <div className="text-muted-foreground">Arquitetos de Solução</div>
-                  <div className="text-abbott-blue">suporte@littec.com</div>
-                </div>
+                
               </div>
             </div>
           </div>
         </CardContent>
       </Card>
-    </div>
-  );
-
-  const integrations = [
-    {
-      name: "Power Automate",
-      description: "Fluxos automáticos de notificação e escalação",
-      icon: <Zap className="h-5 w-5" />,
-      status: "Planejado",
-      features: [
-        "Notificar próximo responsável ao envio",
-        "Lembrar SLA próximo de vencer (75%)",
-        "Escalonar SLA vencido para gerência",
-        "Envio automático de resumo final"
-      ]
-    },
-    {
-      name: "Microsoft Dataverse",
-      description: "Armazenamento seguro e auditoria completa",
-      icon: <Database className="h-5 w-5" />,
-      status: "Planejado", 
-      features: [
-        "Histórico imutável de todas as ações",
-        "Backup automático dos dados",
-        "Controle de versão por campo",
-        "Relatórios de performance por etapa"
-      ]
-    },
-    {
-      name: "Microsoft Teams",
-      description: "Interação rápida via Adaptive Cards",
-      icon: <MessageSquare className="h-5 w-5" />,
-      status: "Planejado",
-      features: [
-        "Cards interativos para aprovação rápida",
-        "Notificações em tempo real",
-        "Integração com calendários",
-        "Histórico de conversas por processo"
-      ]
-    },
-    {
-      name: "Geração de PDF",
-      description: "Relatórios finais automatizados",
-      icon: <FileText className="h-5 w-5" />,
-      status: "Disponível",
-      features: [
-        "Resumo consolidado de todo o processo",
-        "Timeline visual das etapas",
-        "Assinaturas digitais dos responsáveis",
-        "Export para Excel/CSV"
-      ]
-    }
-  ];
-
-  const automationFlows = [
-    {
-      trigger: "Processo criado",
-      actions: [
-        "Registrar no Dataverse",
-        "Iniciar SLA da primeira etapa",
-        "Notificar Solicitante Primário"
-      ],
-      icon: <CheckCircle className="h-4 w-4 text-accent" />
-    },
-    {
-      trigger: "Etapa enviada",
-      actions: [
-        "Salvar snapshot imutável",
-        "Notificar próximo responsável",
-        "Iniciar SLA da próxima etapa",
-        "Atualizar dashboard em tempo real"
-      ],
-      icon: <ArrowRight className="h-4 w-4 text-primary" />
-    },
-    {
-      trigger: "SLA próximo do vencimento",
-      actions: [
-        "Enviar lembrete ao responsável",
-        "Notificar supervisor (opcional)",
-        "Destacar no dashboard"
-      ],
-      icon: <Clock className="h-4 w-4 text-warning" />
-    },
-    {
-      trigger: "SLA vencido",
-      actions: [
-        "Escalar para gerência",
-        "Registrar no histórico de SLA",
-        "Enviar relatório de atraso",
-        "Marcar como crítico no dashboard"
-      ],
-      icon: <AlertTriangle className="h-4 w-4 text-destructive" />
-    },
-    {
-      trigger: "Processo concluído",
-      actions: [
-        "Gerar PDF final automaticamente",
-        "Notificar solicitante original",
-        "Arquivar no Dataverse",
-        "Atualizar métricas de performance"
-      ],
-      icon: <CheckCircle className="h-4 w-4 text-accent" />
-    }
-  ];
-
-  const benefits = [
-    "Redução de 80% no tempo de processamento manual",
-    "Transparência total com histórico imutável", 
-    "Cumprimento de SLA com alertas automáticos",
-    "Redução de retrabalho e erros humanos",
-    "Rastreabilidade completa end-to-end",
-    "Integração nativa com ferramentas Microsoft"
-  ];
-
-  return (
-    <div className="container mx-auto py-8 space-y-8">
+    </div>;
+  const integrations = [{
+    name: "Power Automate",
+    description: "Fluxos automáticos de notificação e escalação",
+    icon: <Zap className="h-5 w-5" />,
+    status: "Planejado",
+    features: ["Notificar próximo responsável ao envio", "Lembrar SLA próximo de vencer (75%)", "Escalonar SLA vencido para gerência", "Envio automático de resumo final"]
+  }, {
+    name: "Microsoft Dataverse",
+    description: "Armazenamento seguro e auditoria completa",
+    icon: <Database className="h-5 w-5" />,
+    status: "Planejado",
+    features: ["Histórico imutável de todas as ações", "Backup automático dos dados", "Controle de versão por campo", "Relatórios de performance por etapa"]
+  }, {
+    name: "Microsoft Teams",
+    description: "Interação rápida via Adaptive Cards",
+    icon: <MessageSquare className="h-5 w-5" />,
+    status: "Planejado",
+    features: ["Cards interativos para aprovação rápida", "Notificações em tempo real", "Integração com calendários", "Histórico de conversas por processo"]
+  }, {
+    name: "Geração de PDF",
+    description: "Relatórios finais automatizados",
+    icon: <FileText className="h-5 w-5" />,
+    status: "Disponível",
+    features: ["Resumo consolidado de todo o processo", "Timeline visual das etapas", "Assinaturas digitais dos responsáveis", "Export para Excel/CSV"]
+  }];
+  const automationFlows = [{
+    trigger: "Processo criado",
+    actions: ["Registrar no Dataverse", "Iniciar SLA da primeira etapa", "Notificar Solicitante Primário"],
+    icon: <CheckCircle className="h-4 w-4 text-accent" />
+  }, {
+    trigger: "Etapa enviada",
+    actions: ["Salvar snapshot imutável", "Notificar próximo responsável", "Iniciar SLA da próxima etapa", "Atualizar dashboard em tempo real"],
+    icon: <ArrowRight className="h-4 w-4 text-primary" />
+  }, {
+    trigger: "SLA próximo do vencimento",
+    actions: ["Enviar lembrete ao responsável", "Notificar supervisor (opcional)", "Destacar no dashboard"],
+    icon: <Clock className="h-4 w-4 text-warning" />
+  }, {
+    trigger: "SLA vencido",
+    actions: ["Escalar para gerência", "Registrar no histórico de SLA", "Enviar relatório de atraso", "Marcar como crítico no dashboard"],
+    icon: <AlertTriangle className="h-4 w-4 text-destructive" />
+  }, {
+    trigger: "Processo concluído",
+    actions: ["Gerar PDF final automaticamente", "Notificar solicitante original", "Arquivar no Dataverse", "Atualizar métricas de performance"],
+    icon: <CheckCircle className="h-4 w-4 text-accent" />
+  }];
+  const benefits = ["Redução de 80% no tempo de processamento manual", "Transparência total com histórico imutável", "Cumprimento de SLA com alertas automáticos", "Redução de retrabalho e erros humanos", "Rastreabilidade completa end-to-end", "Integração nativa com ferramentas Microsoft"];
+  return <div className="container mx-auto py-8 space-y-8">
       <div className="text-center max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold text-foreground mb-4">
           Escopo & Automações
@@ -544,8 +453,7 @@ export default function ScopeAutomations() {
           Integrações & Tecnologias
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
-          {integrations.map((integration, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
+          {integrations.map((integration, index) => <Card key={index} className="hover:shadow-lg transition-shadow">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -564,16 +472,13 @@ export default function ScopeAutomations() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
-                  {integration.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-sm">
+                  {integration.features.map((feature, idx) => <li key={idx} className="flex items-center gap-2 text-sm">
                       <CheckCircle className="h-3 w-3 text-accent flex-shrink-0" />
                       {feature}
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </CardContent>
-            </Card>
-          ))}
+            </Card>)}
         </div>
       </div>
 
@@ -584,8 +489,7 @@ export default function ScopeAutomations() {
           Fluxos Automáticos Planejados
         </h2>
         <div className="space-y-4">
-          {automationFlows.map((flow, index) => (
-            <Card key={index} className="hover:shadow-md transition-shadow">
+          {automationFlows.map((flow, index) => <Card key={index} className="hover:shadow-md transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
                   <div className="p-2 rounded-lg bg-secondary/10">
@@ -594,17 +498,14 @@ export default function ScopeAutomations() {
                   <div className="flex-1">
                     <h3 className="font-semibold mb-2">{flow.trigger}</h3>
                     <div className="flex flex-wrap gap-2">
-                      {flow.actions.map((action, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
+                      {flow.actions.map((action, idx) => <Badge key={idx} variant="outline" className="text-xs">
                           {action}
-                        </Badge>
-                      ))}
+                        </Badge>)}
                     </div>
                   </div>
                 </div>
               </CardContent>
-            </Card>
-          ))}
+            </Card>)}
         </div>
       </div>
 
@@ -618,12 +519,10 @@ export default function ScopeAutomations() {
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-2 gap-4">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="flex items-center gap-3">
+            {benefits.map((benefit, index) => <div key={index} className="flex items-center gap-3">
                 <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
                 <span className="text-sm">{benefit}</span>
-              </div>
-            ))}
+              </div>)}
           </div>
         </CardContent>
       </Card>
@@ -651,6 +550,5 @@ export default function ScopeAutomations() {
           </div>
         </CardContent>
       </Card>
-    </div>
-  );
+    </div>;
 }
